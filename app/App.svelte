@@ -3,6 +3,7 @@
 
   let items = [];
 
+  // API URL
   const baseUrl = "https://firestore.googleapis.com/v1/";
   const articlesUrl =
     baseUrl +
@@ -14,10 +15,7 @@
       .then(response => response.json())
       // sends json trough the firestore parser making it easier to read
       .then(json => FirestoreParser(json))
-      .then(parsed => {
-        items = parsed.documents;
-        console.log(items);
-      })
+      .then(parsed => (items = parsed.documents))
       // picks up errors and sends it to the console log
       .catch(error => console.log(error));
   };

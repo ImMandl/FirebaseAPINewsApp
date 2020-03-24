@@ -15,13 +15,10 @@ tns preview
 Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  This file...
 - uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through<a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
 ```html
-    fetch(articlesUrl)
-      .then(response => response.json())
-      .then(json => FirestoreParser(json))
-      .then(parsed => {
-        items = parsed.documents;
-        console.log(items);
-      })
+fetch(articlesUrl)
+    .then(response => response.json())
+    .then(json => FirestoreParser(json))
+    .then(parsed => (items = parsed.documents))
 ```
 - uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
 - uses <a href='https://svelte-native.technology/docs#showmodal'>Modal</a> to show the full article
