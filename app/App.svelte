@@ -3,7 +3,7 @@
 
   let items = [];
 
-  const baseUrl = "https://firestore.googleapis.come/v1/";
+  const baseUrl = "https://firestore.googleapis.com/v1/";
   const articlesUrl =
     baseUrl +
     "projects/first-firestore-8b4b3/databases/(default)/documents/artikkelregister";
@@ -31,16 +31,25 @@
   }
 
   .main {
-    background-color: #fff;
+    background-color: #1e1c22;
   }
   .article {
-    margin: 8 8 0 8;
-    background-color: brown;
+    margin: 16 8 16 16;
+    background-color: #292b33;
     flex-direction: column;
+  }
+  .article-tekst {
+    padding: 16 8 16 8;
   }
   .article > image {
     height: 200;
     margin-bottom: 16;
+  }
+  .h2 {
+    color: #ebd5bb;
+  }
+  .body {
+    color: #ebd5bb;
   }
 </style>
 
@@ -54,9 +63,10 @@
             src={item.fields.url}
             alt="article image"
             stretch="aspectFit" />
-          <stackLayout>
+          <stackLayout class="article-tekst">
             <label class="h2" text={item.fields.tittel} />
             <label class="body" text={item.fields.tid} />
+            <label class="body" text={item.fields.ingress} />
           </stackLayout>
         </flexboxLayout>
       {:else}
