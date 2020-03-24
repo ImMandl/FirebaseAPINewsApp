@@ -16,9 +16,7 @@ Articles list is handled in app/App.svelte while the full article is handled in 
 - uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through<a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
 ```html
     fetch(articlesUrl)
-      // turns the data we are fetching into json
       .then(response => response.json())
-      // sends json trough the firestore parser making it easier to read
       .then(json => FirestoreParser(json))
       .then(parsed => {
         items = parsed.documents;
