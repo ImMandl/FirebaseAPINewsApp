@@ -12,9 +12,9 @@ tns preview
 ```
 
 ## Project structure
-This is a single page application. Everything is handled in app/App.svelte. This file...
+Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  This file...
 - fetches data from firestore in the svelte <a href='https://svelte-native.technology/docs#property-element'>onMount</a> function
-- uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of items
+- uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
 - uses <a href='https://svelte-native.technology/docs#showmodal'>Modal</a> to show the full article
 - you are not able to do anything further with the items - i.e delete, update or add - so the example just serves as a demo of how you can include firestore in a simple svelt native application
 
