@@ -12,8 +12,10 @@ tns preview
 ```
 
 ## Project structure
-Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  This file...
-- uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through<a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
+Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  
+
+This file...
+- uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through <a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
 ```html
 fetch(articlesUrl)
     .then(response => response.json())
@@ -21,6 +23,6 @@ fetch(articlesUrl)
     .then(parsed => (items = parsed.documents))
 ```
 - uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
-- uses <a href='https://svelte-native.technology/docs#showmodal'>Modal</a> to show the full article
+- uses <a href='https://svelte-native.technology/docs#showmodal'>modal</a> to show the full article
 - you are not able to do anything further with the items - i.e delete, update or add - so the example just serves as a demo of how you can include firestore in a simple svelt native application
 
