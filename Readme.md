@@ -12,7 +12,7 @@ tns preview
 ```
 
 ## Project structure
-Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte displays component/Articles.svelte and is also where the navigation is. <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is useed to navigate between the different categories of news.
+Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte handles the navigate and displays the lists of article through component/Articles.svelte. <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is what is used to navigate between the different categories of news.
 
 ```html
   <tabs bind:selectedIndex={selectedTab}>
@@ -21,28 +21,22 @@ Articles list is handled in component/Articles.svelte while the full article is 
       <tabStripItem>
         <label text="News" />
       </tabStripItem>
-      <tabStripItem class="special">
+      <tabStripItem>
         <label text="Sport" />
       </tabStripItem>
-      <tabStripItem class="special">
+      <tabStripItem>
         <label text="Culture" />
       </tabStripItem>
     </tabStrip>
 
     <tabContentItem>
-      <gridLayout>
         <Articles articles={news} />
-      </gridLayout>
     </tabContentItem>
     <tabContentItem>
-      <gridLayout>
         <Articles articles={sport} />
-      </gridLayout>
     </tabContentItem>
     <tabContentItem>
-      <gridLayout>
         <Articles articles={culture} />
-      </gridLayout>
     </tabContentItem>
 
   </tabs>

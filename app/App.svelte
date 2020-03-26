@@ -45,29 +45,23 @@
       <tabStripItem>
         <label text="News" />
       </tabStripItem>
-      <tabStripItem class="special">
+      <tabStripItem>
         <label text="Sport" />
       </tabStripItem>
-      <tabStripItem class="special">
+      <tabStripItem>
         <label text="Culture" />
       </tabStripItem>
     </tabStrip>
 
     <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
     <tabContentItem>
-      <gridLayout>
-        <Articles articles={news} />
-      </gridLayout>
+      <Articles articles={news} />
     </tabContentItem>
     <tabContentItem>
-      <gridLayout>
-        <Articles articles={sport} />
-      </gridLayout>
+      <Articles articles={sport} />
     </tabContentItem>
     <tabContentItem>
-      <gridLayout>
-        <Articles articles={culture} />
-      </gridLayout>
+      <Articles articles={culture} />
     </tabContentItem>
 
   </tabs>
