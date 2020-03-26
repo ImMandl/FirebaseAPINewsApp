@@ -12,15 +12,56 @@ tns preview
 ```
 
 ## Project structure
-Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  
+Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte displays component/Articles.svelte and is also where the navigation is. <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is useed to navigate between the different categories of news.
+
+
+```html
+  <tabs bind:selectedIndex={selectedTab}>
+
+    <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+    <tabStrip>
+      <tabStripItem>
+        <label text="News" />
+      </tabStripItem>
+      <tabStripItem class="special">
+        <label text="Sport" />
+      </tabStripItem>
+      <tabStripItem class="special">
+        <label text="Culture" />
+      </tabStripItem>
+    </tabStrip>
+
+    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={news} />
+      </gridLayout>
+    </tabContentItem>
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={sport} />
+      </gridLayout>
+    </tabContentItem>
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={culture} />
+      </gridLayout>
+    </tabContentItem>
+
+  </tabs>
+```
 
 This file...
-- uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through <a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
+- uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through <a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>.
 ```html
 fetch(articlesUrl)
     .then(response => response.json())
     .then(json => FirestoreParser(json))
-    .then(parsed => (items = parsed.documents))
+    .then(parsed => {
+        news = parsed.documents.filter(art => art.fields.kategori == "nyhet");
+        sport = parsed.documents.filter(art => art.fields.kategori == "sport");
+        culture = parsed.documents.filter(art => art.fields.kategori == "kultur"
+    );
 ```
 - uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
 - uses <a href='https://svelte-native.technology/docs#showmodal'>modal</a> to show the full article

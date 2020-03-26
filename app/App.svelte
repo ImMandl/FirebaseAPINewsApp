@@ -1,9 +1,12 @@
 <script>
   import { showModal } from "svelte-native";
-  import Article from "./modals/Article.svelte";
   import FirestoreParser from "firestore-parser";
+  import Articles from "./components/Articles.svelte";
 
   let articles = [];
+  let news = [];
+  let sport = [];
+  let culture = [];
 
   // API URL
   const baseUrl = "https://firestore.googleapis.com/v1/";
@@ -17,71 +20,62 @@
       .then(response => response.json())
       // sends json trough the firestore parser making it easier to read
       .then(json => FirestoreParser(json))
-      .then(parsed => (articles = parsed.documents))
+      .then(parsed => {
+        news = parsed.documents.filter(art => art.fields.kategori == "nyhet");
+        sport = parsed.documents.filter(art => art.fields.kategori == "sport");
+        culture = parsed.documents.filter(
+          art => art.fields.kategori == "kultur"
+        );
+      })
       // picks up errors and sends it to the console log
       .catch(error => console.log(error));
   };
 
   getArticles();
 
-  const showArticle = async article => {
-    await showModal({
-      page: Article,
-      props: {
-        article: article
-      }
-    });
-  };
+  let selectedTab = 0;
 </script>
 
 <style>
   .spinner {
     margin-top: 24;
-    color: #800020;
-  }
-
-  .main {
-    background-color: #1e1c22;
-  }
-  .article {
-    margin: 16 8 16 16;
-    background-color: #292b33;
-    flex-direction: column;
-  }
-  .article-tekst {
-    padding: 16 8 16 8;
-  }
-  .article > image {
-    height: 200;
-    margin-bottom: 16;
-  }
-  .h2 {
-    color: #ebd5bb;
-  }
-  .body {
-    color: #ebd5bb;
+    color: #292b33;
   }
 </style>
 
 <page>
   <actionBar title="Bjørneposten" />
-  <scrollView class="main">
-    <stackLayout>
-      {#each articles as article}
-        <flexboxLayout class="article" on:tap={() => showArticle(article)}>
-          <image
-            src={article.fields.url}
-            alt="article image"
-            stretch="aspectFit" />
-          <stackLayout class="article-tekst">
-            <label class="h2" text={article.fields.tittel} />
-            <label class="body" text={article.fields.tid} />
-            <label class="body" text={article.fields.ingress} />
-          </stackLayout>
-        </flexboxLayout>
-      {:else}
-        <activityIndicator busy={true} class="spinner" />
-      {/each}
-    </stackLayout>
-  </scrollView>
+  <tabs bind:selectedIndex={selectedTab}>
+
+    <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
+    <tabStrip>
+      <tabStripItem>
+        <label text="News" />
+      </tabStripItem>
+      <tabStripItem class="special">
+        <label text="Sport" />
+      </tabStripItem>
+      <tabStripItem class="special">
+        <label text="Culture" />
+      </tabStripItem>
+    </tabStrip>
+
+    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={news} />
+      </gridLayout>
+    </tabContentItem>
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={sport} />
+      </gridLayout>
+    </tabContentItem>
+    <tabContentItem>
+      <gridLayout>
+        <Articles articles={culture} />
+      </gridLayout>
+    </tabContentItem>
+
+  </tabs>
 </page>
