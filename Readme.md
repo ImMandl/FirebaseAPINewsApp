@@ -12,7 +12,7 @@ tns preview
 ```
 
 ## Project structure
-Articles list is handled in app/App.svelte while the full article is handled in modal/Article.svelte  
+The list of articles are handled in app/App.svelte while the full article is handled in modal/Article.svelte  
 
 This file...
 - uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through <a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>
