@@ -36,13 +36,6 @@
   let selectedTab = 0;
 </script>
 
-<style>
-  .spinner {
-    margin-top: 24;
-    color: #292b33;
-  }
-</style>
-
 <page>
   <actionBar title="Bjørneposten" />
   <tabs bind:selectedIndex={selectedTab}>

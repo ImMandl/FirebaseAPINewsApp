@@ -14,11 +14,9 @@ tns preview
 ## Project structure
 Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte displays component/Articles.svelte and is also where the navigation is. <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is useed to navigate between the different categories of news.
 
-
 ```html
   <tabs bind:selectedIndex={selectedTab}>
 
-    <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
     <tabStrip>
       <tabStripItem>
         <label text="News" />
@@ -31,7 +29,6 @@ Articles list is handled in component/Articles.svelte while the full article is 
       </tabStripItem>
     </tabStrip>
 
-    <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
     <tabContentItem>
       <gridLayout>
         <Articles articles={news} />
@@ -60,8 +57,7 @@ fetch(articlesUrl)
     .then(parsed => {
         news = parsed.documents.filter(art => art.fields.kategori == "nyhet");
         sport = parsed.documents.filter(art => art.fields.kategori == "sport");
-        culture = parsed.documents.filter(art => art.fields.kategori == "kultur"
-    );
+        culture = parsed.documents.filter(art => art.fields.kategori == "kultur");
 ```
 - uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
 - uses <a href='https://svelte-native.technology/docs#showmodal'>modal</a> to show the full article
