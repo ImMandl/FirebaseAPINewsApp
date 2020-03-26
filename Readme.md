@@ -12,8 +12,10 @@ tns preview
 ```
 
 ## Project structure
-Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte handles the navigate and displays the lists of article through component/Articles.svelte. <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is what is used to navigate between the different categories of news.
+Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte handles the navigate and displays the lists of article through component/Articles.svelte.
 
+This file...
+- <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> is what is used to navigate between the different categories of news.
 ```html
   <tabs bind:selectedIndex={selectedTab}>
 
@@ -41,8 +43,6 @@ Articles list is handled in component/Articles.svelte while the full article is 
 
   </tabs>
 ```
-
-This file...
 - uses  <a href='https://docs.nativescript.org/ns-framework-modules/fetch'>fetch</a> to retrieve data from firestore and parses it through <a href='https://www.npmjs.com/package/firestore-parser'>firestore parser</a>.
 ```html
 fetch(articlesUrl)
