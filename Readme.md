@@ -15,7 +15,7 @@ tns preview
 Articles list is handled in component/Articles.svelte while the full article is handled in modal/Article.svelte. app/App.svelte handles the navigate and displays the lists of article through component/Articles.svelte.
 
 This file...
-- uses <a href='https://svelte-native.technology/docs#tabs'>Tabs</a> to navigate between the different categories of news.
+- uses <a href='https://svelte-native.technology/docs#tabs'>tabs</a> to navigate between the different categories of news.
 ```html
   <tabs bind:selectedIndex={selectedTab}>
 
