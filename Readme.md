@@ -25,13 +25,13 @@ fetch(articlesUrl)
         sport = parsed.documents.filter(art => art.fields.kategori == "sport");
         culture = parsed.documents.filter(art => art.fields.kategori == "kultur");
 ```
-Firestore parser her sends the different categories into their correspodning arrays:
+Firestore parser sends the different categories into their correspodning arrays:
 ```html
   let news = [];
   let sport = [];
   let culture = [];
 ```
-which is then used in the <a href='https://svelte-native.technology/docs#tabs'>tabs</a> to navigate between the different categories. They are all sent to component/Articles.svelte which then sends back the articles for only that category.
+which is then used in <a href='https://svelte-native.technology/docs#tabs'>tabs</a> to navigate between the different categories. They are all sent to component/Articles.svelte which then sends back the articles for only that category.
 ```html
   <tabs bind:selectedIndex={selectedTab}>
 
