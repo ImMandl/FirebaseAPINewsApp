@@ -5,14 +5,21 @@
 
   import * as SocialShare from "nativescript-social-share";
 
+  let image = "";
+  let delTekst = "";
+
+  // funksjon for å dele bilde
+  const imageShare = () => {
+    // setter hva som skal deles her så delingen ikke starter når article modal åpnes
+    image = article.fields.url;
+    SocialShare.shareImage(image);
+  };
+
   // funksjon for å dele tekst
-  // krasjer appen
-  const shareText = () => {
-    socialShareModule.shareText(
-      "Look at this article!",
-      "How would you like to share this text?"
-    );
-    console.log("deling av artikkel");
+  const textShare = () => {
+    // setter hva som skal deles her så delingen ikke starter når article modal åpnes
+    delTekst = article.fields.tittel;
+    SocialShare.shareText(delTekst, "How would you like to share this text?");
   };
 </script>
 
@@ -39,6 +46,14 @@
   .h1 {
     color: #292b33;
   }
+  .btn {
+    padding: 8 12;
+    margin: 0;
+    margin-right: 8;
+  }
+  .back-btn {
+    margin: 16 0;
+  }
 </style>
 
 <frame>
@@ -52,7 +67,12 @@
           stretch="aspectFit" />
         <stackLayout padding="24">
           <label textWrap="true" class="h1" text={article.fields.tittel} />
-          <button on:tap={shareText} text="Del" />
+
+          <flexboxLayout>
+            <button class="btn" on:tap={imageShare} text="Del bilde" />
+            <button class="btn" on:tap={textShare} text="Del overskrift" />
+          </flexboxLayout>
+
           <label
             textWrap="true"
             class="ingress"
@@ -61,7 +81,7 @@
             textWrap="true"
             class="brodtekst"
             text={article.fields.tekst} />
-          <button on:tap={() => closeModal()} text="Tilbake" />
+          <button class="back-btn" on:tap={() => closeModal()} text="Tilbake" />
         </stackLayout>
       </stackLayout>
     </scrollView>
