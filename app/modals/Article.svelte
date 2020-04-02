@@ -1,14 +1,24 @@
 <script>
   import { closeModal } from "svelte-native";
+  import { navigate } from "svelte-native";
   export let article;
+
+  import * as SocialShare from "nativescript-social-share";
+
+  // funksjon for å dele tekst
+  // krasjer appen
+  const shareText = () => {
+    socialShareModule.shareText(
+      "Look at this article!",
+      "How would you like to share this text?"
+    );
+    console.log("deling av artikkel");
+  };
 </script>
 
 <style>
   .main {
     background-color: #eee;
-  }
-  .main-inner {
-    padding: 0 24 24 24;
   }
   .bilde {
     margin-bottom: 16;
@@ -42,6 +52,7 @@
           stretch="aspectFit" />
         <stackLayout padding="24">
           <label textWrap="true" class="h1" text={article.fields.tittel} />
+          <button on:tap={shareText} text="Del" />
           <label
             textWrap="true"
             class="ingress"

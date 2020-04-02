@@ -3,6 +3,7 @@
   import FirestoreParser from "firestore-parser";
   import Articles from "./components/Articles.svelte";
 
+  // array for news articles
   let articles = [];
   let news = [];
   let sport = [];
@@ -36,19 +37,37 @@
   let selectedTab = 0;
 </script>
 
-<page>
-  <actionBar title="Bjørneposten" />
-  <tabs bind:selectedIndex={selectedTab}>
+<style>
+  .main {
+    background-color: #fff;
+  }
+  .top-bar {
+    background-color: #fff;
+    color: #333;
+  }
+  .tab {
+    background-color: #fff;
+    color: #333;
+    border-top: 1 solid #333;
+  }
+  .tab-item {
+    color: #333;
+  }
+</style>
+
+<page class="main">
+  <actionBar title="Bjørneposten" class="top-bar" />
+  <tabs bind:selectedIndex={selectedTab} tabsPosition="bottom">
 
     <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
-    <tabStrip>
-      <tabStripItem>
+    <tabStrip class="tab">
+      <tabStripItem class="tab-item">
         <label text="News" />
       </tabStripItem>
-      <tabStripItem>
+      <tabStripItem class="tab-item">
         <label text="Sport" />
       </tabStripItem>
-      <tabStripItem>
+      <tabStripItem class="tab-item">
         <label text="Culture" />
       </tabStripItem>
     </tabStrip>
