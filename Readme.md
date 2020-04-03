@@ -62,5 +62,5 @@ which is then used in <a href='https://svelte-native.technology/docs#tabs'>tabs<
 - uses a <a href='https://svelte-native.technology/docs#scrollview'>scrollView</a> to display the list of articles
 - uses <a href='https://svelte-native.technology/docs#showmodal'>modal</a> to show the full article
 - uses <a href='https://market.nativescript.org/plugins/nativescript-social-share'>NativeScript Social Share Plugin</a> to share either the article image or title
-- you are not able to do anything further with the items - i.e delete, update or add. This app just simply lets you view articles fethced from firestore.
+- you are not able to do anything further with the items - i.e delete, update or add. This app just simply lets you view articles fetched from firestore.
 
